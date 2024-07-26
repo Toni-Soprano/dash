@@ -1,15 +1,23 @@
-// /app/page.tsx
-import RevenueChart from "./components/RevenueChart";
-import { getLocalData, Post } from "@/lib/getData";
+import PredictionComponent from './components/PredictionComponent';
+import RevenueChart from './components/RevenueChart';
+import { getLocalData, Post } from '@/lib/getData';
+import Navbar from './components/Navbar';
 
 export default async function Dashboard() {
   const posts: Post[] = await getLocalData();
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
-
-      <RevenueChart data={posts} />
+      <Navbar />
+      
+      <div className="flex justify-center m-6 space-x-6">
+        <div className="flex-1">
+          <RevenueChart data={posts} />
+        </div>
+        <div className="flex-none">
+          <PredictionComponent />
+        </div>
+      </div>
     </div>
   );
 }
