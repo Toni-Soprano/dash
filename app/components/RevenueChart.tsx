@@ -1,4 +1,3 @@
-// /components/RevenueChart.tsx
 'use client';
 
 import { Line } from 'react-chartjs-2';

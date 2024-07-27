@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { fetchPrediction } from '@/utils/api';
 import PredictionChart from './PredictionChart';
 
@@ -7,11 +8,13 @@ export default function PredictionComponent() {
   const [days, setDays] = useState<number>(3);
   const [action, setAction] = useState<'Plot' | 'Sum'>('Plot');
   const [result, setResult] = useState<any>(null);
+  const router = useRouter();
 
   const handlePredict = async () => {
     try {
       const prediction = await fetchPrediction(days, action);
       setResult(prediction);
+      router.push('/NewComponent'); // Navigate to the NewComponent page
     } catch (error) {
       console.error('Error fetching prediction:', error);
     }
